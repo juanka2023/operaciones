@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivimagen"
         android:layout_width="360dp"
         android:layout_height="291dp"
         android:layout_marginStart="26dp"
@@ -21,13 +21,14 @@
         app:srcCompat="@drawable/coche" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/ett"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="101dp"
         android:ems="10"
+        android:hint="@string/ett"
         android:inputType="text"
         android:text="¿Cómo te llamas?"
         android:textAllCaps="false"
@@ -36,28 +37,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/ivimagen" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnjugar"
         android:layout_width="196dp"
         android:layout_height="55dp"
         android:layout_marginStart="107dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="108dp"
-        android:text="jugar"
+        android:onClick="jugar"
+        android:text="@string/btnjugar"
+        android:textColor="#FFFCFC"
+        android:textColorHighlight="#FB0000"
+        android:textColorLink="#F60054"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/ett" />
 
     <TextView
-        android:id="@+id/record"
+        android:id="@+id/tvrecord"
         android:layout_width="243dp"
         android:layout_height="55dp"
         android:layout_marginTop="100dp"
-        android:text="record"
+        android:contentDescription="@string/tv"
         android:textColor="#090707"
         android:textColorHighlight="#DBC8C8"
         android:textColorLink="#FFFFFF"
@@ -65,7 +70,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="1.0" />
+
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="@string/tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

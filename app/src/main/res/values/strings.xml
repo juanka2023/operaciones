@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">operaciones</string>
+    <string name="btnjugar">jugar</string>
+    <string name="ett">¿Cómo te llamas?</string>
+    <string name="tv">Record</string>
 </resources>
