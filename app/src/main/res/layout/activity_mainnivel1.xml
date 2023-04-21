@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
+    android:id="@+id/et_respuestas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Mainnivel1">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/iv_vida"
         android:layout_width="87dp"
         android:layout_height="20dp"
         android:layout_marginTop="76dp"
@@ -19,7 +20,7 @@
         app:srcCompat="@drawable/tequeda3vida" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvvida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -27,10 +28,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/tvscore" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -52,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_valor1"
+        android:id="@+id/ivvalor1"
         android:layout_width="117dp"
         android:layout_height="93dp"
         android:layout_marginStart="16dp"
@@ -75,7 +76,7 @@
         app:srcCompat="@drawable/suma" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/ivvalordos"
         android:layout_width="103dp"
         android:layout_height="95dp"
         android:layout_marginTop="152dp"
