@@ -34,7 +34,7 @@ public class Mainnivel1 extends AppCompatActivity {
         avvida = (ImageView) findViewById(R.id.iv_vida);
         ivvdos= (ImageView) findViewById(R.id.ivvalordos);
         ivvuno = (ImageView) findViewById(R.id.ivvalor1);
-        et_respuesta = (EditText) findViewById(R.id.et_respuestas;
+        et_respuesta = (EditText) findViewById(R.id.et_respuestas);
 
         nombre_jugador = getIntent().getStringExtra("jugador");
         tv_nombre.setText("Jugador: " + nombre_jugador);
