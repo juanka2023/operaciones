@@ -84,21 +84,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dos" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="119dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="384dp"
+        android:text="@string/boton_sumar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/etresultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="376dp"
         android:ems="10"
         android:hint="@string/et_respuesta"
         android:inputType="number"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="389dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/boton_sumar"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="386dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
