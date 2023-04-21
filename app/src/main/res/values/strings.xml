@@ -3,4 +3,10 @@
     <string name="btnjugar">jugar</string>
     <string name="ett">¿Cómo te llamas?</string>
     <string name="tv">Record</string>
+
+    <string name="et_vidas">Coche: </string>
+    <string name="jugador_nombre">Jugador:</string>
+    <string name="total_score">Score: 0</string>
+    <string name="boton_sumar">Comprobar</string>
+    <string name="et_respuesta">Respuesta</string>
 </resources>
