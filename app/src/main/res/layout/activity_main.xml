@@ -58,7 +58,7 @@
         tools:text="@string/tv" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvautor"
         android:layout_width="413dp"
         android:layout_height="42dp"
         android:layout_marginStart="1dp"
