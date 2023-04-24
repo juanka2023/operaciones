@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Operaciones"
         tools:targetApi="31">
         <activity
+            android:name=".Mainnivel3"
+            android:exported="false" />
+        <activity
             android:name=".Mainnivel2"
             android:exported="false" />
         <activity
