@@ -53,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/suma"
         android:layout_width="89dp"
         android:layout_height="67dp"
         android:layout_marginTop="196dp"
@@ -64,10 +64,11 @@
         app:srcCompat="@drawable/suma" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btncomprobar"
         android:layout_width="119dp"
         android:layout_height="37dp"
         android:layout_marginTop="384dp"
+        android:onClick="comprobar"
         android:text="@string/boton_sumar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.852"
@@ -88,7 +89,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/ivvalor1"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="8dp"
@@ -98,7 +99,7 @@
         app:srcCompat="@drawable/cero" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/ivvalor2"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="164dp"
