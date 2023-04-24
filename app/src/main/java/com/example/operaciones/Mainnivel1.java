@@ -39,8 +39,6 @@ public class Mainnivel1 extends AppCompatActivity {
         tv_nombre.setText("Jugador: " + texto);
 
 
-
-
     }
     public void comprobar (View view){
         String respuesta = et_respuesta.getText().toString();
