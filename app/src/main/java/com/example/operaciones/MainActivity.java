@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText et_nombre;
     private ImageView iv_personaje;
     private TextView tv_record;
+
+    private MediaPlayer mp;
 
     int num_aleatorio = (int) (Math.random() * 3 + 1);
 
@@ -44,14 +50,40 @@ public class MainActivity extends AppCompatActivity {
                 iv_personaje.setImageResource(R.drawable.cochetres);
                 break;
         }
+        mp = MediaPlayer.create(this, R.raw.temaprincipal);
+        mp.start();
+        mp.setLooping(true);
 
     }
 
-    //Método el botón Siguiente
+    public  void Jugar(View view){
+    String nombre = et_nombre.getText().toString();
+
+    if (!nombre.equals("")) {
+        mp.stop();
+        mp.release();
+
+        Intent intent =new Intent(this,mainnive1.class);
+
+        intent.putExtra("", nombre);
+        startActivity(intent);
+        finish();
+      } else {
+        Toast.makeText(this, "primero debe introducir su nombre", Toast.LENGTH_SHORT).show();
+
+        et_nombre.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(et_nombre, InputMethodManager.SHOW_IMPLICIT);
+      }
+    }
+    @Override
+    public void onBackPressed (){
+
+      }
+      //Método el botón Siguiente
     public void jugar(View view) {
         Intent jugar = new Intent(this, Mainnivel1.class);
         startActivity(jugar);
         finish();
-
-   }
-}
+      }
+    }
