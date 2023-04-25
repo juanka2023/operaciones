@@ -3,7 +3,10 @@ package com.example.operaciones;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +25,9 @@ public class Mainnivel1 extends AppCompatActivity {
     int score, numAleatorio_uno, numAleatorio_dos, resultado, vidas = 3;
     String nombre_jugador, string_score, string_vidas;
 
-    String numero [] = {"cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"};
+    String NombreBaseDatos = "administracion";
+
+    String numero[] = {"cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"};
 
 
     @SuppressLint({"MissingInflatedId", "RestrictedApi"})
@@ -34,28 +39,32 @@ public class Mainnivel1 extends AppCompatActivity {
         tv_nombre = findViewById(R.id.tvnombre);
         tv_score = findViewById(R.id.tvscore);
         et_respuesta = findViewById(R.id.etresultado);
+        iv_Auno = findViewById(R.id.ivvalor1);
+        iv_Ados = findViewById(R.id.ivvalor2);
+        iv_vidas = findViewById(R.id.ivida);
 
         String texto = getIntent().getStringExtra("texto");
         tv_nombre.setText("Jugador: " + texto);
 
 
     }
-    public void comprobar (View view){
+
+    public void comprobar(View view) {
         String respuesta = et_respuesta.getText().toString();
 
-        if (!respuesta.equals("")){
+        if (!respuesta.equals("")) {
             //musica cuando se tenga
             int respuesta_jugador = Integer.parseInt(respuesta);
-            if (resultado == respuesta_jugador){
+            if (resultado == respuesta_jugador) {
                 score++;
                 tv_score.setText(score);
-            }else {
+            } else {
                 //musica cuando la tengamos
                 vidas--;
 
-                switch (vidas){
+                switch (vidas) {
                     case 3:
-                         iv_vidas.setImageResource(R.drawable.tequeda3vida);
+                        iv_vidas.setImageResource(R.drawable.tequeda3vida);
                         break;
                     case 2:
                         Toast.makeText(this, "te quedan dos coches", Toast.LENGTH_SHORT).show();
@@ -70,17 +79,24 @@ public class Mainnivel1 extends AppCompatActivity {
                         Intent intent = new Intent(this, MainActivity.class);
                         startActivity(intent);
                         finish();
-                        // mp.stop();
-                        // mp.release();
+                        mp.stop();
+                        mp.release();
                         break;
                 }
                 tv_score.setText(score);
             }
             NumAleatorio();
         }
+        mp = MediaPlayer.create(this, R.raw.pasodenivel);
+        mp.start();
+        mp.setLooping(true);
+
+        mp_great = MediaPlayer.create(this, R.raw.acierto);
+        mp_bad = MediaPlayer.create(this, R.raw.fallo);
     }
-    public void NumAleatorio(){
-        if(score <= 9) {
+
+    public void NumAleatorio() {
+        if (score <= 9) {
 
             numAleatorio_uno = (int) (Math.random() * 10);
             numAleatorio_dos = (int) (Math.random() * 10);
@@ -103,6 +119,20 @@ public class Mainnivel1 extends AppCompatActivity {
                 NumAleatorio();
             }
 
+        } else {
+            Intent intent = new Intent(this, MainActivityNivel2.class);
+
+            string_score = String.valueOf(score);
+            string_vidas = String.valueOf(vidas);
+            intent.putExtra("jugador", nombre_jugador);
+            intent.putExtra("score", string_score);
+            intent.putExtra("vidas", string_vidas);
+
+            startActivity(intent);
+            finish();
+            mp.stop();
+            mp.release();
         }
-        }
-        }
+    }
+}
+

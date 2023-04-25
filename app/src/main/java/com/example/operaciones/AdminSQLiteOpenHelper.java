@@ -12,8 +12,9 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase BD) {
-        BD.execSQL("create table puntaje(nombre text, score int)");
+    public void onCreate(SQLiteDatabase BaseDeDatos) {
+        BaseDeDatos.execSQL("create table lista(nombre text primary key, puntuacion int)");
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.operaciones;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private ImageView iv_personaje;
     private TextView tv_record;
 
+    private Button btn_jugar;
+
     private MediaPlayer mp;
+    String NombreBaseDatos = "administracion";
 
     int num_aleatorio = (int) (Math.random() * 3 + 1);
 
@@ -33,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        et_nombre = (EditText)findViewById(R.id.ett);
+        et_nombre = (EditText)findViewById(R.id.ettnombre);
         iv_personaje = (ImageView) findViewById(R.id.iv_personaje);
         tv_record = (TextView)findViewById(R.id.tvrecord);
 
@@ -49,41 +54,45 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 iv_personaje.setImageResource(R.drawable.cochetres);
                 break;
+
         }
+
+
+
+
         mp = MediaPlayer.create(this, R.raw.temaprincipal);
         mp.start();
         mp.setLooping(true);
 
     }
 
-    public  void Jugar(View view){
-    String nombre = et_nombre.getText().toString();
+    public void Jugar (View view){
 
-    if (!nombre.equals("")) {
-        mp.stop();
-        mp.release();
+        AdminSQLiteOpenHelper admi = new AdminSQLiteOpenHelper(this, NombreBaseDatos,null,1);
+        SQLiteDatabase BasedeDatos = admi.getWritableDatabase();
 
-        Intent intent =new Intent(this,mainnive1.class);
+        Cursor consulta = BasedeDatos.rawQuery("select * from lista where puntuacion = (select max(puntuacion) from lista)", null);
+        String nombre = et_nombre.getText().toString();
 
-        intent.putExtra("", nombre);
-        startActivity(intent);
-        finish();
-      } else {
-        Toast.makeText(this, "primero debe introducir su nombre", Toast.LENGTH_SHORT).show();
+        if(!nombre.isEmpty()){
+            ContentValues registro = new ContentValues();
+            registro.put("nombre", nombre);
 
-        et_nombre.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(et_nombre, InputMethodManager.SHOW_IMPLICIT);
-      }
+            BasedeDatos.insert("lista", null, registro);
+
+            BasedeDatos.close();
+            String texto = nombre;
+            Intent i = new Intent(this, Mainnivel1.class);
+            i.putExtra("texto", texto);
+            startActivity(i);
+            Toast.makeText(this, "Nivel 1", Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this, "Introduce un nombre para continuar", Toast.LENGTH_SHORT).show();
+        }
     }
     @Override
     public void onBackPressed (){
 
       }
-      //Método el botón Siguiente
-    public void jugar(View view) {
-        Intent jugar = new Intent(this, Mainnivel1.class);
-        startActivity(jugar);
-        finish();
-      }
+
     }

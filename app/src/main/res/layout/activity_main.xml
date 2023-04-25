@@ -21,38 +21,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cocheuno" />
 
-    <EditText
-        android:id="@+id/ett"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="101dp"
-        android:ems="10"
-        android:hint="@string/ett"
-        android:inputType="text"
-        android:text="¿Cómo te llamas?"
-        android:textAllCaps="false"
-        android:textColor="#070606"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_personaje" />
-
     <TextView
         android:id="@+id/tvrecord"
-        android:layout_width="243dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginBottom="72dp"
         android:contentDescription="@string/tv"
+        android:gravity="center"
         android:textColor="#090707"
         android:textColorHighlight="#DBC8C8"
         android:textColorLink="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="@string/tv" />
@@ -73,11 +55,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="444dp"
-        android:onClick="jugar"
+        android:onClick="Jugar"
         android:text="@string/btnjugar"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/btnjugar" />
+
+    <EditText
+        android:id="@+id/ettnombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="103dp"
+        android:ems="10"
+        android:hint="¿Como te llama?"
+        android:inputType="text"
+        android:maxLength="15"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_personaje" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

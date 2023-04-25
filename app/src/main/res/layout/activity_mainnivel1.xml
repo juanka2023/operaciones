@@ -9,7 +9,7 @@
     tools:context=".Mainnivel1">
 
     <ImageView
-        android:id="@+id/iv_vida"
+        android:id="@+id/iv_vida3"
         android:layout_width="87dp"
         android:layout_height="20dp"
         android:layout_marginTop="84dp"
