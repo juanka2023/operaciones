@@ -9,4 +9,8 @@
     <string name="total_score">Score: 0</string>
     <string name="boton_sumar">Comprobar</string>
     <string name="et_respuesta">Respuesta</string>
+    <string name="img_aleatorio">portada</string>
+    <string name="img_aleatorio2">portada</string>
+    <string name="tv_invisible">numero</string>
+    <string name="tv_invisible2">numero2</string>
 </resources>

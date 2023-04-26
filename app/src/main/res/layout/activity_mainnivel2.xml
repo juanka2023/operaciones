@@ -49,7 +49,7 @@
         app:srcCompat="@drawable/tequeda3vida" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageValor2"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="168dp"
@@ -60,21 +60,21 @@
         app:srcCompat="@drawable/siete" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageValor1"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:contentDescription="@string/app_name"
+        android:contentDescription=" "
         app:srcCompat="@drawable/seis"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="173dp" />
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="144dp"
-        android:layout_height="80dp"
+        android:id="@+id/ivsigno"
+        android:layout_width="130dp"
+        android:layout_height="76dp"
         android:contentDescription="@string/app_name"
         app:srcCompat="@drawable/resta"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="215dp" />
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="207dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
