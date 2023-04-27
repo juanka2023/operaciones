@@ -27,7 +27,7 @@ public class Mainnivel1 extends AppCompatActivity {
 
     String NombreBaseDatos = "administracion";
 
-   //"no hace falta en mi caso" String numero[] = {"cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"};
+    //"no hace falta en mi caso" String numero[] = {"cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"};
 
 
     @SuppressLint({"MissingInflatedId", "RestrictedApi"})
@@ -41,11 +41,28 @@ public class Mainnivel1 extends AppCompatActivity {
         et_respuesta = findViewById(R.id.etresultado);
         iv_Auno = findViewById(R.id.ivvalor1);
         iv_Ados = findViewById(R.id.ivvalor2);
-        iv_vidas = findViewById(R.id.ivida);
+        iv_vidas = findViewById(R.id.iv_vida3);
         tv_invisible = findViewById(R.id.tv_invisible);
+        tv_invisible2 = findViewById(R.id.tv_invisible2);
 
         String texto = getIntent().getStringExtra("texto");
         tv_nombre.setText("Jugador: " + texto);
+
+        int puntosInt = getIntent().getIntExtra("npuntos", 0);
+        if (puntosInt==0) {
+            tv_score.setText("0");
+        }else {
+            String valor = String.valueOf(puntosInt);
+            tv_score.setText(valor);
+        }
+
+        mp = MediaPlayer.create(this, R.raw.pasodenivel);
+        mp.start();
+        mp.setLooping(true);
+
+        mp_great = MediaPlayer.create(this, R.raw.acierto);
+        mp_bad = MediaPlayer.create(this, R.raw.fallo);
+
 
         int numeroAleatorio1 = (int) (Math.random() * 10);
         int resultado = 10 - numeroAleatorio1;
@@ -53,82 +70,92 @@ public class Mainnivel1 extends AppCompatActivity {
         int operacion = numeroAleatorio1 + numeroAleatorio2;
 
         tv_invisible.setText(Integer.toString(operacion));
+        //tv_invisible2.setText(Integer.toString(operacion));
 
 
-
-        switch (numeroAleatorio1){
+        switch (numeroAleatorio1) {
             case 0:
                 iv_Auno.setImageResource(R.drawable.cero);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 1:
                 iv_Auno.setImageResource(R.drawable.uno);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 2:
                 iv_Auno.setImageResource(R.drawable.dos);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 3:
                 iv_Auno.setImageResource(R.drawable.tres);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 4:
                 iv_Auno.setImageResource(R.drawable.cuatro);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 5:
                 iv_Auno.setImageResource(R.drawable.cinco);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 6:
                 iv_Auno.setImageResource(R.drawable.seis);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 7:
                 iv_Auno.setImageResource(R.drawable.siete);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 8:
                 iv_Auno.setImageResource(R.drawable.ocho);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
             case 9:
                 iv_Auno.setImageResource(R.drawable.nueve);
-                tv_invisible.setText(numeroAleatorio1);
+
                 break;
         }
 
-        switch (numeroAleatorio2){
+        switch (numeroAleatorio2) {
             case 0:
                 iv_Ados.setImageResource(R.drawable.cero);
+
                 break;
             case 1:
                 iv_Ados.setImageResource(R.drawable.uno);
+
                 break;
             case 2:
                 iv_Ados.setImageResource(R.drawable.dos);
+
                 break;
             case 3:
                 iv_Ados.setImageResource(R.drawable.tres);
+
                 break;
             case 4:
                 iv_Ados.setImageResource(R.drawable.cuatro);
+
                 break;
             case 5:
                 iv_Ados.setImageResource(R.drawable.cinco);
+
                 break;
             case 6:
                 iv_Ados.setImageResource(R.drawable.seis);
+
                 break;
             case 7:
                 iv_Ados.setImageResource(R.drawable.siete);
+
                 break;
             case 8:
                 iv_Ados.setImageResource(R.drawable.ocho);
+
                 break;
             case 9:
                 iv_Ados.setImageResource(R.drawable.nueve);
+
                 break;
         }
     }
@@ -136,31 +163,38 @@ public class Mainnivel1 extends AppCompatActivity {
     public void comprobar(View view) {
         String respuesta = et_respuesta.getText().toString();
         String numeroInvi_String = tv_invisible.getText().toString();
-        String numeroInvi2_String = tv_invisible2.getText().toString();
+        String scoreString = tv_score.getText().toString();
+        int scoreInt = 0;
 
-        int valor1_int = Integer.parseInt(numeroInvi_String);
-        int valor2_int = Integer.parseInt(numeroInvi2_String);
+        if (score <= 9) {
 
-        if (!respuesta.equals("")) {
-            mp_great = MediaPlayer.create(this, R.raw.acierto);
-            //int respuesta_jugador = Integer.parseInt(numeroInvi_String);
-            if (resultado == valor1_int) {
+            if (respuesta.equals(numeroInvi_String)) {
+
+                mp_great.start();
+                scoreInt = Integer.parseInt(scoreString);
+                scoreInt+=1;
+                Intent next = new Intent(this, Mainnivel1.class);
+                next.putExtra("npuntos", scoreInt);
+                startActivity(next);
                 score++;
-                tv_score.setText(score);
+                tv_score.setText("Score: " + score);
+                et_respuesta.setText("");
+                Toast.makeText(this, "correcto", Toast.LENGTH_SHORT).show();
             } else {
+
                 mp_bad = MediaPlayer.create(this, R.raw.fallo);
                 vidas--;
 
+
+                Toast.makeText(this, "Incorecto", Toast.LENGTH_SHORT).show();
                 switch (vidas) {
                     case 3:
                         iv_vidas.setImageResource(R.drawable.tequeda3vida);
                         break;
                     case 2:
-                        Toast.makeText(this, "te quedan dos coches", Toast.LENGTH_SHORT).show();
                         iv_vidas.setImageResource(R.drawable.tequeda2vida);
                         break;
                     case 1:
-                        Toast.makeText(this, "Te queda un coche", Toast.LENGTH_SHORT).show();
                         iv_vidas.setImageResource(R.drawable.tequeda1vida);
                         break;
                     case 0:
@@ -172,42 +206,13 @@ public class Mainnivel1 extends AppCompatActivity {
                         mp.release();
                         break;
                 }
-                tv_score.setText(score);
+
+                et_respuesta.setText("");
             }
-        }
-        mp = MediaPlayer.create(this, R.raw.pasodenivel);
-        mp.start();
-        mp.setLooping(true);
-    }
-
-    /*public void NumAleatorio() {
-        if (score <= 9) {
-
-            numAleatorio_uno = (int) (Math.random() * 10);
-            numAleatorio_dos = (int) (Math.random() * 10);
-
-            resultado = numAleatorio_uno + numAleatorio_dos;
-
-            if (resultado <= 10) {
-
-                for (int i = 0; i < numero.length; i++) {
-                    int id = getResources().getIdentifier(numero[i], "drawable", getPackageName());
-                    if (numAleatorio_uno == i) {
-                        iv_Auno.setImageResource(id);
-                    }
-                    if (numAleatorio_dos == i) {
-                        iv_Ados.setImageResource(id);
-                    }
-                }
-
-            } else {
-                NumAleatorio();
-            }
-
         } else {
-            Intent intent = new Intent(this, MainActivityNivel2.class);
+            Intent intent = new Intent(this, Mainnivel2.class);
 
-            string_score = String.valueOf(score);
+            string_score = String.valueOf(scoreInt);
             string_vidas = String.valueOf(vidas);
             intent.putExtra("jugador", nombre_jugador);
             intent.putExtra("score", string_score);
@@ -215,10 +220,21 @@ public class Mainnivel1 extends AppCompatActivity {
 
             startActivity(intent);
             finish();
-            mp.stop();
-            mp.release();
         }
-    }*/
+
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

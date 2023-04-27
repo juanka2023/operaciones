@@ -57,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
-
-
         mp = MediaPlayer.create(this, R.raw.temaprincipal);
         mp.start();
         mp.setLooping(true);
@@ -75,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
         String nombre = et_nombre.getText().toString();
 
         if(!nombre.isEmpty()){
+            mp.stop();
+            mp.release();
+
+
             ContentValues registro = new ContentValues();
             registro.put("nombre", nombre);
 
