@@ -3,10 +3,7 @@ package com.example.operaciones;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -17,12 +14,12 @@ import android.widget.Toast;
 
 public class Mainnivel1 extends AppCompatActivity {
 
-    private TextView tv_nombre, tv_score, tv_invisible, tv_invisible2;
+    private TextView tv_nombre, tv_score, tv_invisible, tv_invisible2 , vidas;
     private ImageView iv_Auno, iv_Ados, iv_vidas;
     private EditText et_respuesta;
     private MediaPlayer mp, mp_great, mp_bad;
 
-    int score, numAleatorio_uno, numAleatorio_dos, resultado, vidas = 3;
+    int score, numAleatorio_uno, numAleatorio_dos, resultado;
     String nombre_jugador, string_score, string_vidas;
 
     String NombreBaseDatos = "administracion";
@@ -44,9 +41,10 @@ public class Mainnivel1 extends AppCompatActivity {
         iv_vidas = findViewById(R.id.iv_vida3);
         tv_invisible = findViewById(R.id.tv_invisible);
         tv_invisible2 = findViewById(R.id.tv_invisible2);
+        vidas = findViewById(R.id.tv_vidas);
 
-        String texto = getIntent().getStringExtra("texto");
-        tv_nombre.setText("Jugador: " + texto);
+        String nombre = getIntent().getStringExtra("nombre");
+        tv_nombre.setText(nombre);
 
         int puntosInt = getIntent().getIntExtra("npuntos", 0);
         if (puntosInt==0) {
@@ -54,6 +52,18 @@ public class Mainnivel1 extends AppCompatActivity {
         }else {
             String valor = String.valueOf(puntosInt);
             tv_score.setText(valor);
+        }
+
+        //String vidas_string = getIntent().getStringExtra("vidas");
+        //vidas.setText(vidas_string);
+        int vidasInt =getIntent().getIntExtra("nvidas",3);
+
+        if(vidas.getText().toString().equals("1")){
+            iv_vidas.setImageResource(R.drawable.tequeda1vida);
+        }else if(vidas.getText().toString().equals("2")){
+            iv_vidas.setImageResource(R.drawable.tequeda2vida);
+        }else if(vidas.getText().toString().equals("3")){
+            iv_vidas.setImageResource(R.drawable.tequeda3vida);
         }
 
         mp = MediaPlayer.create(this, R.raw.pasodenivel);
@@ -167,34 +177,56 @@ public class Mainnivel1 extends AppCompatActivity {
         int scoreInt = 0;
 
         if (score <= 9) {
+            String vidasString = vidas.getText().toString();
+            int vidasInt = Integer.parseInt(vidasString);
 
             if (respuesta.equals(numeroInvi_String)) {
 
                 mp_great.start();
                 scoreInt = Integer.parseInt(scoreString);
                 scoreInt+=1;
+
+                //score++;
+                //tv_score.setText("Score: " + score);
                 Intent next = new Intent(this, Mainnivel1.class);
                 next.putExtra("npuntos", scoreInt);
+                next.putExtra("nombre", tv_nombre.getText().toString());
+                next.putExtra("nvidas", vidas.getText().toString());
                 startActivity(next);
-                score++;
-                tv_score.setText("Score: " + score);
                 et_respuesta.setText("");
                 Toast.makeText(this, "correcto", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(this, Mainnivel1.class);
+
+
+                //string_score = String.valueOf(scoreInt);
+                //string_vidas = String.valueOf(vidas);
+                //next.putExtra("nombre", tv_nombre.getText().toString());
+                //intent.putExtra("score", tv_score.getText().toString());
+                //intent.putExtra("vidas", string_vidas);
+
+                //startActivity(intent);
+
             } else {
 
                 mp_bad = MediaPlayer.create(this, R.raw.fallo);
-                vidas--;
+                vidasInt=-1;
+                vidasString = Integer.toString(vidasInt);
+                vidas.setText(vidasString);
+               // int vidasInt = 3;
+               // vidasInt--;
 
 
                 Toast.makeText(this, "Incorecto", Toast.LENGTH_SHORT).show();
-                switch (vidas) {
+                switch (vidasInt) {
                     case 3:
                         iv_vidas.setImageResource(R.drawable.tequeda3vida);
                         break;
                     case 2:
+                        Toast.makeText(this, "Te quedan 2 coches", Toast.LENGTH_LONG).show();
                         iv_vidas.setImageResource(R.drawable.tequeda2vida);
                         break;
                     case 1:
+                        Toast.makeText(this, "Te queda 1 coche", Toast.LENGTH_LONG).show();
                         iv_vidas.setImageResource(R.drawable.tequeda1vida);
                         break;
                     case 0:
@@ -206,20 +238,25 @@ public class Mainnivel1 extends AppCompatActivity {
                         mp.release();
                         break;
                 }
-
+                Intent next = new Intent(this, Mainnivel1.class);
+                next.putExtra("vidas", vidas.getText().toString());
+                startActivity(next);
                 et_respuesta.setText("");
             }
         } else {
             Intent intent = new Intent(this, Mainnivel2.class);
 
-            string_score = String.valueOf(scoreInt);
-            string_vidas = String.valueOf(vidas);
-            intent.putExtra("jugador", nombre_jugador);
-            intent.putExtra("score", string_score);
-            intent.putExtra("vidas", string_vidas);
+            //string_score = String.valueOf(scoreInt);
+            //string_vidas = String.valueOf(vidas);
+            //nombre_jugador = tv_nombre.getText().toString();
+            //intent.putExtra("jugador", nombre_jugador);
+            //intent.putExtra("score", string_score);
+            //intent.putExtra("vidas", string_vidas);
 
             startActivity(intent);
             finish();
+            mp.stop();
+            mp.release();
         }
 
     }

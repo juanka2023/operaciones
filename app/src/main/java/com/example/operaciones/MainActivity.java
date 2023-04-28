@@ -3,6 +3,7 @@ package com.example.operaciones;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     int num_aleatorio = (int) (Math.random() * 3 + 1);
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             BasedeDatos.close();
             String texto = nombre;
             Intent i = new Intent(this, Mainnivel1.class);
-            i.putExtra("texto", texto);
+            i.putExtra("nombre", texto);
             startActivity(i);
             Toast.makeText(this, "Nivel 1", Toast.LENGTH_LONG).show();
         }else {

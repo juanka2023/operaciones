@@ -13,4 +13,7 @@
     <string name="img_aleatorio2">portada</string>
     <string name="tv_invisible">numero</string>
     <string name="tv_invisible2">numero2</string>
+    <string name="jugador">Jugador: </string>
+    <string name="score">Score: </string>
+    <string name="txt_vidas">3</string>
 </resources>
