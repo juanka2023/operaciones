@@ -45,9 +45,13 @@
         android:layout_height="42dp"
         android:layout_marginStart="1dp"
         android:layout_marginBottom="4dp"
-        android:text="TextView"
+        android:text="creado por juanka y luis Miguel"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button

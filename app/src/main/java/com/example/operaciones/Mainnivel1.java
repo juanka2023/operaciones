@@ -66,7 +66,7 @@ public class Mainnivel1 extends AppCompatActivity {
             iv_vidas.setImageResource(R.drawable.tequeda3vida);
         }
 
-        mp = MediaPlayer.create(this, R.raw.pasodenivel);
+        mp = MediaPlayer.create(this, R.raw.temaprincipal);
         mp.start();
         mp.setLooping(true);
 
@@ -212,8 +212,8 @@ public class Mainnivel1 extends AppCompatActivity {
                 vidasInt=-1;
                 vidasString = Integer.toString(vidasInt);
                 vidas.setText(vidasString);
-               // int vidasInt = 3;
-               // vidasInt--;
+                vidasInt = 3;
+                vidasInt--;
 
 
                 Toast.makeText(this, "Incorecto", Toast.LENGTH_SHORT).show();
@@ -234,6 +234,7 @@ public class Mainnivel1 extends AppCompatActivity {
                         Intent intent = new Intent(this, MainActivity.class);
                         startActivity(intent);
                         finish();
+                        mp_bad.start();
                         mp.stop();
                         mp.release();
                         break;
